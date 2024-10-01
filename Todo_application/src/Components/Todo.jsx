@@ -1,28 +1,15 @@
 import { useState } from "react";
 import Todoitem from "./Todoitem";
+import Form from "./Form";
+import Todolist from "./Todolist";
 
 export default function Todo() {
-  const [Todo, settodo] = useState("");
   const [todos, settodos] = useState([]);
-  function handleSubmit(e) {
-    e.preventDefault();
-    settodos([...todos, Todo]);
-    settodo("");
-  }
 
   return (
     <div>
-      <form onSubmit={handleSubmit}>
-        <input
-          type="text"
-          value={Todo}
-          onChange={(e) => settodo(e.target.value)}
-        />
-        <button>ADD</button>
-      </form>
-      {todos.map((item) => (
-        <Todoitem key={item} item={item}/>
-      ))}
+      <Form todos={todos} settodos={settodos} />
+      <Todolist todos={todos}  settodos={settodos}/>
     </div>
   );
 }
